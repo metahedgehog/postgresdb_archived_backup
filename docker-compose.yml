@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  postgres_db:
+    container_name: postgres_db
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+      BACKUP_RETENTION: 10 # Change backup retention days count
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./pgbackup:/var/lib/postgresql/backup
+    secrets:
+      - postgres_password
+    networks:
+      - backend
+  
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    depends_on:
+      - postgres_db
+    networks:
+      - backend
+      - frontend
+
+secrets:
+  postgres_password:
+    file: ./.secrets/postgres_password.txt
+
+networks:
+  backend:
+  frontend:
+
+volumes:
+  pgdata:
