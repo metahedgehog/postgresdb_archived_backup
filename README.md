@@ -89,6 +89,10 @@ volumes:
 
 **Backup Retention**: This parameter defines how long a tarball backup with the databases will be stored. Default value is 10 (days).
 
+**Databases Location:** All databases are stored inside the Docker Volume _pgdata_.
+
+**Backups Location:** A tarball backups are stored outside the container by using _volume mount_. It is done for the easier access and restoring process.
+
 ___
 
 ### Cron parameters
