@@ -100,4 +100,4 @@ ___
 
 ### Default database initialization
 
-__init.sql__ file contains a default _user_ , _password_ and _database_ owned my _user_. When container starts, this parameters are implemented automatically. You can modify them according to your needs.
+__init.sql__ file contains a default _user_ , _password_ and _database_ owned by _user_. When container starts, this parameters are implemented automatically. You can modify them according to your needs.
